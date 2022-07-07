@@ -56,7 +56,13 @@ jobs:
           python -m pip install --upgrade pip
           pip debug --verbose
 
-      - run: pip install climetlab
+      - name: Installing a dev version of climetlab.
+        run: |
+          git clone https://github.com/ecmwf/climetlab.git
+          cd climetlab
+          git checkout indexing
+          git rev-parse HEAD
+          pip install .
 
       - name: Installing climetlab-eumetnet-postprocessing-benchmark
         run: |
